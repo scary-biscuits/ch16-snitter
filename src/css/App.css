@@ -146,10 +146,9 @@ footer {
 
 .logged-in-user-panel {
   display: flex;
-  flex-direction: column;
 justify-content: space-between;
-align-items: center;
-max-width: fit-content;
+align-items: flex-start;
+
 }
 
 
@@ -372,13 +371,20 @@ nav {
 }
 
 .nav {  
-  width: 30%;
-  min-width: 300px;
+  width: 20%;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding-right: 10px;
-  height: 100vh;
+  height: 95vh;
+}
+.logged-in-user-panel {
+  width: 100%;
+}
+.logout-button {
+  align-self: flex-end;
+  justify-self: center;
 }
 
 main {

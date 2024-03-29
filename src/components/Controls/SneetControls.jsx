@@ -15,11 +15,11 @@ import Bookmark from "./Bookmark";
     if (!authenticatedUser) return <SneetStats sneet={props.sneet}/>
     
     return ( 
-    <div className="controls">
+    <div className="controls"><div className="stats">
 <Reposts key={props.sneet.id} sneet={props.sneet}/>
-<Likes sneet={props.sneet}/>
-<Bookmark sneet={props.sneet}/>
-<Delete sneet={props.sneet}/>
+<Likes sneet={props.sneet}/></div>
+<div className="actions"><Bookmark sneet={props.sneet}/>
+<Delete sneet={props.sneet}/></div>
                 </div>
                  );
 }

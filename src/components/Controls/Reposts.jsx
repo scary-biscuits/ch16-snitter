@@ -28,7 +28,7 @@ dispatch(deleteSneet(sneetData[sneetData.findIndex((item) => item.original && au
          } }}}
          
 >
-<div className="control-button"><div className="control-icon"><img className="svg" src={authenticatedUser.reposted.includes(props.sneet.id) ? "./public/icons/retweet-solid-green.svg" : "./public/icons/retweet-solid.svg"}/></div>{props.sneet.retweet_count}  </div> 
+<div className="control-button"><div className="control-icon"><img className="svg" src={authenticatedUser.reposted.includes(props.sneet.id) ? "./public/icons/retweet-solid-green.svg" : "./public/icons/retweet-solid.svg"}/></div>{props.sneet.retweet_count > 999 ? `${Math.round(props.sneet.retweet_count/100)/10}k` : props.sneet.retweet_count}  </div> 
 </button>
 
     

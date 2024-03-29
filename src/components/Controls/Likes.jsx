@@ -17,7 +17,7 @@ const Likes = (props) => {
     !authenticatedUser.liked.includes(props.sneet.id) ? dispatch(incrementFavoriteCount(props.sneet.id)) : dispatch(decrementFavoriteCount(props.sneet.id)) 
   }}
 >
-<div className="control-button"><div className="control-icon"><img className="svg" src={authenticatedUser.liked.includes(props.sneet.id) ? "./public/icons/heart-solid.svg" : "./public/icons/heart-regular.svg"}/></div> {props.sneet.favorite_count}</div> 
+<div className="control-button"><div className="control-icon"><img className="svg" src={authenticatedUser.liked.includes(props.sneet.id) ? "./public/icons/heart-solid.svg" : "./public/icons/heart-regular.svg"}/></div> {props.sneet.favorite_count > 999 ? `${Math.round(props.sneet.favorite_count/100)/10}k` : props.sneet.favorite_count}</div> 
 </button>
     </div>  );
 }

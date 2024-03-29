@@ -2,6 +2,7 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 import sha256 from "sha256";
 import { getStoredUsers, storeUsers } from "./diskutils";
 
+
 const initialState = { loginStatus: 0, userData: []  };
 
 const storedData = getStoredUsers();

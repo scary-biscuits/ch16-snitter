@@ -1,19 +1,54 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setNewUserData } from "../../redux/userSlice";
+import Joi from "joi";
+import Errors from "./Errors";
 
 const Signup = () => {
   const [userInput, setUserInput] = useState({});
+  const [errors, setErrors] = useState();
 
   const dispatch = useDispatch();
 
-  const onInput = (e) => {
-    setUserInput({ ...userInput, [e.target.id]: e.target.value });
+  const schema = {
+    name: Joi.string().min(3).max(30),
+    username: Joi.string().alphanum().min(3).max(30).allow("-", "_"),
+    email: Joi.string().email({ tlds: { allow: false } }),
+    password: Joi.string().alphanum().min(8)
+  };
+  
+  const onInput = async (e) => {
+   
+    const newUserInput = { [e.target.id]: e.target.value };
+    const _joiInstance = Joi.object(schema);
+
+    try {
+      await _joiInstance.validateAsync(newUserInput);
+      setErrors(undefined);
+      setUserInput({ ...userInput, ...newUserInput });
+    } catch (e) {
+      const errorsMod = {};
+      setTimeout(() => {
+        e.details.forEach((error) => {
+          errorsMod[error.context.key] = error.message;
+        });
+        console.log(errors);
+        setErrors(errorsMod);
+      }, 3000);
+    }
+
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
+    setErrors(undefined);
+    if(userInput.name){
+    
     dispatch(setNewUserData(userInput));
+    }
+    else {
+      setErrors({name: "You can't sign up without giving your details!"})
+    }
   };
 
   return (
@@ -37,6 +72,7 @@ const Signup = () => {
         </div>
         <button>Sign up</button>
       </form>
+      {errors ? <Errors error={errors} /> : ""}
     </div>
   );
 };

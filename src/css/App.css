@@ -13,6 +13,10 @@ body {
   padding: 20px;
 }
 
+.large-screen-only{
+  display: none;
+} 
+
 h1 {
   font-size: 3rem;
   font-weight: 600;
@@ -77,8 +81,8 @@ textarea {
 }
 
 .nav {  
-  width: 30%;
-  min-width: 300px;
+  width: 5%;
+  min-width: min-content;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -114,7 +118,8 @@ height: max-content;
 }
 
 footer {
-  min-width: 300px;
+  display: none;
+
 }
 
 .user-account-manage {
@@ -122,7 +127,10 @@ footer {
 
 }
 
-
+.user-account-panel{
+  max-width: 500px;
+  margin: auto;
+}
 
 .signup-form {
   display: flex;
@@ -144,6 +152,7 @@ width: max-content;
 main {
   display: flex;
   justify-content: center;
+  width: 65%;
 }
 
 
@@ -175,19 +184,7 @@ main {
 width: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-}
-
-
-.search {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-content: center;
-}
-
-.like-count {
-  text-align: center;
+  justify-content: center;
 }
 
 .sneet-form {
@@ -199,7 +196,6 @@ width: 100%;
   border-radius: 3px;
 }
 
- 
 
 .post-button {
   align-self: flex-end;
@@ -211,6 +207,10 @@ form {
   display:flex;
   flex-direction: column;
   width: 100%;
+}
+
+label {
+  font-size: 1.5rem;
 }
 
 .card {
@@ -235,9 +235,6 @@ form {
   align-items: center;
 }
 
-.hide {
-  display: none;
-}
 .icon {
 width: 20px;
 }
@@ -331,17 +328,16 @@ button {
     font-weight: 300;
   }
 
-  .search {
-    flex-direction: row;
-    width: 75%;
-    justify-content: center;
-  }
+
   input {
     height: 30px;
     /* min-width: 300px; */
     border-radius: 2px;
   }
 
+  footer {
+    min-width: 300px;
+  }
 
   .card {
     min-width: 300px;
@@ -349,3 +345,26 @@ button {
 }
 
 
+@media screen and (min-width: 1005px) {
+footer {
+  display: flex;
+  min-width: 300px;
+}
+}
+
+@media screen and (min-width: 1284px) {
+.large-screen-only{
+  display :unset;
+}
+
+.nav {  
+  width: 30%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 10px;
+  height: 100vh;
+}
+
+  }

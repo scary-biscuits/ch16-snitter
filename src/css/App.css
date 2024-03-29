@@ -10,7 +10,8 @@ body {
   font-family: Ubuntu, Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 300;
   color: #ffffff;
-  padding: 20px;
+  padding: 10px;
+
 }
 
 .large-screen-only{
@@ -76,18 +77,24 @@ textarea {
 .container {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-start;
 }
 
-.nav {  
+nav {  
+
   width: 5%;
   min-width: min-content;
+  padding-right: 20px;
+  height: 95vh;
+}
+
+.nav{
+  position:fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-right: 10px;
-  height: 100vh;
+  height: 90%;
 }
 
 ul {
@@ -118,7 +125,7 @@ height: max-content;
 }
 
 footer {
-  display: none;
+ width:5%
 
 }
 
@@ -138,21 +145,19 @@ footer {
 }
 
 .logged-in-user-panel {
-  padding-bottom: 25px;;
   display: flex;
+  flex-direction: column;
 justify-content: space-between;
 align-items: center;
+max-width: fit-content;
 }
 
-.logged-in-user-details {
-width: max-content;
-}
 
 
 main {
   display: flex;
   justify-content: center;
-  width: 95%;
+  width: 60%;
 }
 
 
@@ -164,7 +169,7 @@ main {
 }
 
 .sneets-display {
-  width: 80%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -341,20 +346,23 @@ button {
     border-radius: 2px;
   }
 
-  footer {
-    min-width: 300px;
-  }
+main {
+  width: 45%
+}
 
-  .card {
+  /* .card {
     min-width: 300px;
-  }
+  } */
 }
 
 
 @media screen and (min-width: 1005px) {
 footer {
-  display: flex;
+  width: 30%;
   min-width: 300px;
+}
+nav {
+  min-width: 200px;
 }
 }
 

@@ -11,43 +11,33 @@ const Signup = () => {
   const dispatch = useDispatch();
 
   const schema = {
-    name: Joi.string().min(3).max(30),
-    username: Joi.string().alphanum().min(3).max(30).allow("-", "_"),
-    email: Joi.string().email({ tlds: { allow: false } }),
-    password: Joi.string().alphanum().min(8)
+    name: Joi.string().min(3).max(30).required(),
+    username:  Joi.string().alphanum().min(3).max(30).required(),
+    email: Joi.string().email({ tlds: { allow: false } }).required(),
+    password: Joi.string().alphanum().min(8).required()
   };
-  
-  const onInput = async (e) => {
-   
-    const newUserInput = { [e.target.id]: e.target.value };
+
+  const onInput =  (e) => {
+    setUserInput({ ...userInput, [e.target.id]: e.target.value  });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const newUserInput = { ...userInput };
     const _joiInstance = Joi.object(schema);
 
+    if(newUserInput.username) {
     try {
       await _joiInstance.validateAsync(newUserInput);
       setErrors(undefined);
-      setUserInput({ ...userInput, ...newUserInput });
+      dispatch(setNewUserData(newUserInput));
+      dispatch(setLoginStatus(1))
     } catch (e) {
-      const errorsMod = {};
-      setTimeout(() => {
-        e.details.forEach((error) => {
-          errorsMod[error.context.key] = error.message;
-        });
-        console.log(errors);
-        setErrors(errorsMod);
-      }, 3000);
+        setErrors({message: e.message})
     }
-
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setErrors(undefined);
-    if(userInput.name){
-    dispatch(setNewUserData(userInput));
-    dispatch(setLoginStatus(1))
-    }
+  }
     else {
-      setErrors({name: "You can't sign up without giving your details!"})
+      setErrors({message: "You can't sign up without giving your details!"})
     }
   };
 

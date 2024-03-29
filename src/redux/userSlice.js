@@ -12,6 +12,7 @@ export const userSlice = createSlice({
   initialState: storedData ? storedData : initialState,
   reducers: {
     setNewUserData: (state, {payload} ) => {
+
   payload.id = nanoid();
   payload.bookmarked = [];
   payload.liked = [];

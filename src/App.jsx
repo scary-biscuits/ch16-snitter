@@ -6,7 +6,7 @@ import { setSneetData } from "./redux/sneetSlice";
 import "./css/App.css";
 import { useSelector } from "react-redux";
 import { selectSneetData } from "./redux/sneetSlice";
-import { selectAuthenticatedUser } from "./redux/userSlice";
+import { selectAuthenticatedUser, selectUserData } from "./redux/userSlice";
 import LoginStatus from "./components/Account/LoginStatus";
 
 
@@ -14,6 +14,7 @@ export default function App() {
   const dispatch = useDispatch();
 const sneetData = useSelector(selectSneetData);
 const user = useSelector(selectAuthenticatedUser);
+
 
   const getSneetData = async () => {
     if (!sneetData) {

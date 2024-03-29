@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { setNewUserData } from "../../redux/userSlice";
+import { setNewUserData, setLoginStatus } from "../../redux/userSlice";
 import Joi from "joi";
 import Errors from "./Errors";
 
@@ -43,8 +43,8 @@ const Signup = () => {
     e.preventDefault();
     setErrors(undefined);
     if(userInput.name){
-    
     dispatch(setNewUserData(userInput));
+    dispatch(setLoginStatus(1))
     }
     else {
       setErrors({name: "You can't sign up without giving your details!"})

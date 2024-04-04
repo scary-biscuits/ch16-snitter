@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { setNewUserData, setLoginStatus } from "../../redux/userSlice";
 import Joi from "joi";
 import Errors from "./Errors";
+import axios  from "axios";
 
 const Signup = () => {
   const [userInput, setUserInput] = useState({});
@@ -30,7 +31,16 @@ const Signup = () => {
     try {
       await _joiInstance.validateAsync(newUserInput);
       setErrors(undefined);
-      dispatch(setNewUserData(newUserInput));
+
+      //send it to the store - now obsolete
+      // dispatch(setNewUserData(newUserInput));
+
+      //send it to api instead
+
+const {data} = await axios.post("http://localhost:6001/user", userInput);
+console.log(data);
+
+
       dispatch(setLoginStatus(1))
     } catch (e) {
         setErrors({message: e.message})

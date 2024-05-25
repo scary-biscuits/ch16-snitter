@@ -19,7 +19,11 @@ const Signup = () => {
   };
 
   const onInput =  (e) => {
-    setUserInput({ ...userInput, [e.target.id]: e.target.value  });
+    setUserInput({ ...userInput, [e.target.id]: e.target.value,  bookmarked: [],
+      liked: [],
+      reposted: [],
+      following: [],
+      followers_count: 0  });
   };
 
   const onSubmit = async (e) => {
@@ -38,10 +42,12 @@ const Signup = () => {
       //send it to api instead
 
 const {data} = await axios.post("http://localhost:6001/user", userInput);
-console.log(data);
 
-
-      dispatch(setLoginStatus(1))
+if (data.status) {
+  localStorage.setItem("token", data.token)   
+   dispatch(setLoginStatus(2))
+}
+  
     } catch (e) {
         setErrors({message: e.message})
     }

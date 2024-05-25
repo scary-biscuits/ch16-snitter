@@ -8,11 +8,12 @@ import Likes from "./Likes";
 import Bookmark from "./Bookmark";
   
   const SneetControls = (props) => {
-
+//query obsolete
     const authenticatedUser = useSelector(selectAuthenticatedUser);
+    
+    const token = localStorage.getItem("token")
 
-
-    if (!authenticatedUser) return <SneetStats sneet={props.sneet}/>
+    if (!token) return <SneetStats sneet={props.sneet}/>
     
     return ( 
     <div className="controls"><div className="stats">

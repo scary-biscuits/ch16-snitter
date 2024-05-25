@@ -13,7 +13,7 @@ import LoginStatus from "./components/Account/LoginStatus";
 export default function App() {
   const dispatch = useDispatch();
 const sneetData = useSelector(selectSneetData);
-const user = useSelector(selectAuthenticatedUser);
+const token = localStorage.getItem("token")
 
 
   const getSneetData = async () => {
@@ -27,6 +27,6 @@ const user = useSelector(selectAuthenticatedUser);
     getSneetData();}
   }, []);
 
-if (!user) return <LoginStatus/>
+if (!token) return <LoginStatus/>
   return <Interface></Interface>;
 }
